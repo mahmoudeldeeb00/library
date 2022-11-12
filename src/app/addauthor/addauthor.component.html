@@ -1,0 +1,30 @@
+<div class="container">
+
+
+    <form [formGroup]="authorForm" (ngSubmit)="saveauthor()" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="name">Name </label>
+            <input type="text" class="form-control" id="name" placeholder="Name" name="name" formControlName="Name">
+        </div>
+        <div class="form-group">
+            <label for="details"> Details</label>
+            <input type="text" class="form-control" id="details" placeholder=" Details" name="details" formControlName="Details">
+        </div>
+        <div class="form-group">
+            <label for="birthDay"> birthDay</label>
+            <input type="date" class="form-controll" id="birthDay" placeholder=" birthDay" name="birthDay" formControlName="BirthDay">
+        </div>
+
+        <select formControlName="CityId" name="CityId" id="CityId">
+        <option disabled> Select City </option>
+        <option *ngFor="let city of Cities" value="{{city.id}}">{{city.name}}</option>
+    </select>
+        <div class="form-group">
+
+            <input type="file" #photoinput class="form-controll" id="picture" (change)="onFileSelected($event)" name="picture">
+
+        </div>
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </form>
+</div>

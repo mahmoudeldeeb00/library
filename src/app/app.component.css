@@ -1,0 +1,10 @@
+nav,
+footer {
+    padding: 10px;
+    text-align: center;
+    background-color: #ccc;
+}
+
+nav a {
+    margin: 5px;
+}

@@ -1,0 +1,40 @@
+<div class="container">
+    <h1 class="display-3">
+        Books Page
+    </h1>
+
+    <table class="table ">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+                <th scope="col">price</th>
+                <th scope="col">publish date</th>
+                <th scope="col"> book type </th>
+                <th scope="col">author </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of books |paginate:{
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+        }">
+
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.name}} </td>
+                <td>{{item.price}} </td>
+                <td>{{item.publishDate}} </td>
+                <td>{{item.bookTypeName}} </td>
+                <td>{{item.authorName}}</td>
+            </tr>
+
+        </tbody>
+
+
+    </table>
+    <div class="d-flex justify-content-center">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
+</div>

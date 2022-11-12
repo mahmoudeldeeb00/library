@@ -1,0 +1,52 @@
+<div class="container">
+    <h1 class="display-3">
+        Author Page
+    </h1>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+                <th scope="col">birth day </th>
+                <th scope="col">details</th>
+                <th scope="col">city name </th>
+                <th scope="col">Picture </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let item of authors">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.birthDay}}</td>
+            <td>{{item.details}}</td>
+            <td>{{item.cityName}}</td>
+            <td><img src="assets/author pictures/{{item.pictureSrc}}" width="50px"></td>
+        </tr> 
+    </tbody>-->
+            <tr *ngFor="
+          let author of Authors
+            | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        ">
+                <th scope="row">{{ author.id }}</th>
+                <td>{{author.name}}</td>
+                <td>{{author.birthDay}}</td>
+                <td>{{author.details}}</td>
+                <td>{{author.cityName}}</td>
+                <td><img src="assets/author pictures/{{author.pictureSrc}}" width="50px"></td>
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="d-flex justify-content-center">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
+</div>
