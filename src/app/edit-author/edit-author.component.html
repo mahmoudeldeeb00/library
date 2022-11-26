@@ -1,0 +1,55 @@
+<div class="formbold-main-wrapper">
+    <!-- Author: FormBold Team -->
+    <!-- Learn More: https://formbold.com -->
+    <div class="formbold-form-wrapper">
+        <img src="/assets/author pictures/{{authorForm.controls['pictureSrc'].value!=null?authorForm.controls['pictureSrc'].value:'Default.jpg'}}">
+        <form [formGroup]="authorForm" (ngSubmit)="editAuthor()" enctype="multipart/form-data">
+            <div class="formbold-input-flex">
+                <input hidden type="number" formControlName="id" value="{{authorId}}">
+                <div>
+                    <label for="Name" class="formbold-form-label">  Name  <span *ngIf="authorForm.controls['name'].invalid &&authorForm.controls['name'].dirty" class="text-danger"> name is Required *</span></label>
+
+                    <input type="text" name="Name" id="Name" placeholder="Author name" class="formbold-form-input" formControlName="name" />
+                </div>
+                <div>
+                    <label class="formbold-form-label">City <span class="text-danger" *ngIf="authorForm.controls['cityId'].invalid &&authorForm.controls['cityId'].dirty" >City Required *</span></label>
+
+                    <select class="formbold-form-input" name="occupation" id="occupation" formControlName="cityId">
+                      <option *ngFor="let city of Cities" value="{{city.id}}">{{city.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="formbold-input-flex">
+                <div>
+                    <label for="Details" class="formbold-form-label">  Details </label>
+                    <input style="width:200%" type="text" name="Details" id="Details" placeholder="Author Details" class="formbold-form-input" formControlName="details" />
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div class="formbold-mb-3">
+                <label for="dob" class="formbold-form-label"> Author birthDay </label>
+                <input type="date" name="dob" id="dob" class="formbold-form-input" formControlName="birthDay" />
+            </div>
+
+
+
+            <div class="formbold-form-file-flex">
+                <label for="upload" class="formbold-form-label">
+                      Upload Photo
+                  </label>
+                <input type="file" #photoinput name="upload" id="upload" class="formbold-form-file" (change)="onFileSelected($event)" />
+
+
+            </div>
+
+            <button type="submit" class="formbold-btn">Edit Author</button>
+        </form>
+    </div>
+</div>

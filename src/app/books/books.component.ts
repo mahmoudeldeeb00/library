@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { BookService } from '../book.service';
 
 @Component({
@@ -11,10 +12,12 @@ export class BooksComponent implements OnInit {
   public books : any;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 7;
+  tableSize: number = 9;
   tableSizes: any = [3, 6, 9, 12];
 
-  constructor(private service : BookService) { }
+  constructor(private service : BookService ,private title:Title) {
+    this.title.setTitle("books")
+   }
 
   ngOnInit(): void {
     this.getBooks();

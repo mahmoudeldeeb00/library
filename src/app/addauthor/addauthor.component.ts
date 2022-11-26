@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookService } from '../book.service';
 
@@ -11,6 +11,7 @@ import { BookService } from '../book.service';
 export class AddauthorComponent implements OnInit {
   public  authorForm!:FormGroup ;
   public Cities:any ;
+  
  
   constructor(private formbuilder:FormBuilder, private service:BookService, private route :Router) { 
    this.service.GetCities().subscribe((res:any[])=>{
@@ -24,7 +25,7 @@ export class AddauthorComponent implements OnInit {
   // this.setcitylist()
   }
   
- //save book function
+ //save author function
  public saveauthor():void{
  
   this.service.AddAuhtor(this.authorForm.value).subscribe((result)=>{
@@ -32,18 +33,13 @@ export class AddauthorComponent implements OnInit {
     this.route.navigate(['author'])
   })
  }
-// setcitylist():void{
-//   this.service.GetCities().subscribe((result)=>{
-//     this.Cities= result ; 
-    
-//   })
-// }
+
 private init (): void{
   this.authorForm = this.formbuilder.group({
-    Name:'',
+    Name:['',Validators.required],
     Details:'',
     BirthDay:'',
-    CityId: '',
+    CityId: ['',Validators.required],
     pictureSrc: ''  
   })
     

@@ -12,6 +12,9 @@
                 <th scope="col">publish date</th>
                 <th scope="col"> book type </th>
                 <th scope="col">author </th>
+                <th scope="col">
+                    --
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -24,9 +27,10 @@
                 <th scope="row">{{item.id}}</th>
                 <td>{{item.name}} </td>
                 <td>{{item.price}} </td>
-                <td>{{item.publishDate}} </td>
+                <td>{{item.publishDate|date}} </td>
                 <td>{{item.bookTypeName}} </td>
                 <td>{{item.authorName}}</td>
+                <td><a class="btn btn-primary" [routerLink]="['/bookdetails',item.id]">View details</a></td>
             </tr>
 
         </tbody>

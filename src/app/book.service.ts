@@ -21,18 +21,33 @@ public getAuthors (): Observable<any>{
 public AddAuhtor (author:any):Observable<any>{
   return  this.http.post("https://localhost:44316/api/Author/Add Author",author, {responseType: 'text'});
 }
+
+public EditAuhtor ( id:number , author:any):Observable<any>{
+  return  this.http.put("https://localhost:44316/api/Author/Edit Model",author,{params:{Id:id},responseType: 'text'});
+}
 //addbook
 public AddBook (book:any): Observable<any>{
-  return this.http.post("https://localhost:44316/api/Book/Add New Book",book,{responseType: 'text'});
+  return this.http.post("https://localhost:44316/api/Book/Add New Book",book, {responseType: 'text'});
 
 }
 
 public SaveAuthorPhoto (file:FormData): Observable<any>{
-  console.log(file)
   return this.http.post("https://localhost:44316/api/helper/SaveFile" , file, {responseType:'text'});
 
 }
 
+////////// get  details  /////////////////// 
+public getBookDetails (id : number): Observable<any>{
+  return this.http.get("https://localhost:44316/api/Book/View One Book By Id ",{params:{Id:id}})
+}
+
+public getAuthorDetails (id : number): Observable<any>{
+  return this.http.get("https://localhost:44316/api/Author/Get One Author",{params:{Id:id}})
+}
+
+
+
+// //////////////    Selectors   //////////////////// // 
 
 
 // selects Helper

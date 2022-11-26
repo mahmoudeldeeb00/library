@@ -1,0 +1,61 @@
+<div class="container">
+
+    <div class="display">
+        <span class="display-span"> 
+          Name : 
+        </span>
+        <div class="display-data">
+            <h2>{{ bookDetails.name}}</h2>
+        </div>
+    </div>
+    <div class="display">
+        <span class="display-span"> 
+          Price : 
+        </span>
+        <div class="display-data">
+            <h2>
+                {{ bookDetails.price}}
+            </h2>
+        </div>
+    </div>
+    <div class="display">
+        <span class="display-span"> 
+          Page Numbers : 
+        </span>
+        <div class="display-data">
+            <h2>
+                {{ bookDetails.pageNumbers}}
+            </h2>
+        </div>
+    </div>
+    <div class="display">
+        <span class="display-span"> 
+          Author : 
+        </span>
+        <div class="display-data">
+            <h2>
+                {{ bookDetails.authorName}}
+            </h2>
+        </div>
+    </div>
+    <div class="display">
+        <span class="display-span"> 
+          BookType : 
+        </span>
+        <div class="display-data">
+            <h2>
+                {{ bookDetails.bookTypeName}}
+            </h2>
+        </div>
+    </div>
+    <div class="display">
+        <span class="display-span"> 
+          Publish Date : 
+        </span>
+        <div class="display-data">
+            <h2>
+                {{ bookDetails.publishDate|date}}
+            </h2>
+        </div>
+    </div>
+</div>

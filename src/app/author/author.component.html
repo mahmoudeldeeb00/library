@@ -11,20 +11,15 @@
                 <th scope="col">details</th>
                 <th scope="col">city name </th>
                 <th scope="col">Picture </th>
+                <th scope="col">-- </th>
+                <th scope="col">-- </th>
+
 
 
             </tr>
         </thead>
         <tbody>
-            <!-- <tr *ngFor="let item of authors">
-            <th scope="row">{{item.id}}</th>
-            <td>{{item.name}}</td>
-            <td>{{item.birthDay}}</td>
-            <td>{{item.details}}</td>
-            <td>{{item.cityName}}</td>
-            <td><img src="assets/author pictures/{{item.pictureSrc}}" width="50px"></td>
-        </tr> 
-    </tbody>-->
+
             <tr *ngFor="
           let author of Authors
             | paginate
@@ -37,10 +32,14 @@
         ">
                 <th scope="row">{{ author.id }}</th>
                 <td>{{author.name}}</td>
-                <td>{{author.birthDay}}</td>
+                <td>{{author.birthDay|date}}</td>
                 <td>{{author.details}}</td>
                 <td>{{author.cityName}}</td>
                 <td><img src="assets/author pictures/{{author.pictureSrc}}" width="50px"></td>
+                <td><a class="btn btn-success " [routerLink]="['/editauthor',author.id]">Edit </a></td>
+                <td><a class="btn btn-primary " [routerLink]="['/authordetails',author.id]">Details </a></td>
+
+
             </tr>
         </tbody>
 

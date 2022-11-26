@@ -1,0 +1,53 @@
+<div class="display-body">
+    <div class="container">
+        <div class="header">
+
+
+
+            <div class="display-img">
+                <img src="/assets/author pictures/{{authModel.pictureSrc}}" />
+
+            </div>
+
+        </div>
+        <div class="details">
+            <div class="after-img">
+                <h3 class="authname">
+                    {{authModel.name}}
+                </h3>
+                <span class="birth-span">
+             {{authModel.cityName}} -   {{authModel.birthDay|date}}
+            </span>
+            </div>
+            <p> {{authModel.details}} </p>
+
+        </div>
+
+
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>pageNumber</th>
+                <th>Type</th>
+                <th>PulishDate</th>
+                <th>view </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of authModel.books">
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.pageNumbers}}</td>
+                <td>{{item.bookTypeName}}</td>
+                <td>{{item.publishDate|date}}</td>
+                <td><a class="btn btn-success" [routerLink]="['/bookdetails',item.id]">view </a></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+
+</div>

@@ -13,6 +13,16 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    box-shadow: rgb(202, 93, 93) 4px 4px 34px -4px;
+}
+
 .formbold-mb-3 {
     margin-bottom: 15px;
 }

@@ -3,37 +3,38 @@
     <form [formGroup]="bookForm" (ngSubmit)="savebook()">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">name</label>
-            <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
-
+            <input type="text" formControlName="Name" class="form-control" id="name" aria-describedby="emailHelp">
+            <span class="text-danger" *ngIf="name?.invalid && name?.touched">name is invalid</span>
         </div>
 
         <div class="mb-3">
             <label for="price" class="form-label">price</label>
-            <input type="number" formControlName="price" class="form-control" id="price">
+            <input type="number" formControlName="Price" class="form-control" id="price">
         </div>
 
         <div class="mb-3 form-check">
-            <input formControlName="publishDate" type="date" class="form-control" id="publishDate">
-            <label class="form-label" for="publishDate">publish Date</label>
+            <label class="form-label" for="PublishDate">publish Date</label>
+            <input formControlName="PublishDate" type="date" class="form-control" id="publishDate">
         </div>
         <div class="mb-3">
-            <label for="pageNumbers" class="form-label">pageNumbers</label>
-            <input type="number" formControlName="pageNumbers" class="form-control" id="pageNumbers">
+            <label for="PageNumbers" class="form-label">pageNumbers</label>
+            <input type="number" formControlName="PageNumbers" class="form-control" id="pageNumbers">
         </div>
 
 
         <div class="mb-3">
-            <label for="bookTypeId" class="form-label">bookTypeId</label>
-            <input type="number" formControlName="bookTypeId" class="form-control" id="bookTypeId">
+            <label for="authorId" class="form-label">authorId </label>
+            <input type="number" formControlName="AuthorId" class="form-control" id="authorId">
         </div>
         <div class="mb-3">
 
-            <select id="authorId" formControlName="authorId">
-                <option disabled> Select Book Type</option>
+            <select id="bookTypeId" formControlName="BookTypeId">
+                <option disabled selected> Select Book Type</option>
                 <option *ngFor="let type of bookTypes " value="{{type.id}}"> {{type.name}}</option>
 
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button [disabled]="bookForm.invalid" type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
+<!-- //////////////////////////////////// -->

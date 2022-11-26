@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -11,8 +12,11 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = 'library';
   showHeadAndFooter: boolean = false;
+  currentuser! :any ; 
+  userName!:string;
 
-constructor(public authiservice : AuthService,public http: HttpClient,router:Router){
+  isAuthenticated : boolean = !!localStorage.getItem('token');
+constructor(public authiservice : AuthService,public http: HttpClient,private router:Router){
   router.events.forEach((event) => {
     if (event instanceof NavigationStart) {
       if (event['url'] == '/login' || event['url'] =='/register') {
@@ -23,10 +27,16 @@ constructor(public authiservice : AuthService,public http: HttpClient,router:Rou
     }
   
   });
-  
  
+ this.GetUserInfo()
 }
+public GetUserInfo (){
+   this.http.get("https://localhost:44316/api/Authi/getCurrentUserInfromation").subscribe((res:any)=>{
+ this.currentuser = res;
 
+ this.userName = this.currentuser.userName
+   })
+}
 
 public connectServer() {
   this.http.get('url')
@@ -35,5 +45,11 @@ public connectServer() {
       err => console.log(err)
     );
 }
-  
+public logOut(){
+    this.authiservice.logout();
+    this.router.navigate(['']).then(()=>{
+      location.reload();
+    });
+   
+  }
 }

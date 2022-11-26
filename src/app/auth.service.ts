@@ -15,23 +15,16 @@ export class AuthService {
     this._isLoggedIn$.next(!!token);
   }
 
-   login(model:any) {
-    
+   login(model:any) { 
     return this.apiService.login(model).pipe(
       tap((response: any) => {
         this._isLoggedIn$.next(true);
         localStorage.setItem('token', response.token);
       })
     );
-
-
-
-    
   }
   register(regmodel:any){
-
     return this.apiService.register(regmodel).pipe(
-
       tap((response:any)=>{
         this._isLoggedIn$.next(true);
       
@@ -42,6 +35,11 @@ export class AuthService {
 
   public getToken(): string {
     return <string>localStorage.getItem('token');
+  }
+  logout(){
+    this._isLoggedIn$.next(false);
+    localStorage.removeItem('token');
+ 
   }
 
 

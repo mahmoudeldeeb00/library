@@ -1,30 +1,56 @@
-<div class="container">
+<div class="formbold-main-wrapper">
+    <!-- Author: FormBold Team -->
+    <!-- Learn More: https://formbold.com -->
+    <div class="formbold-form-wrapper">
+        <!-- <img src="your-image-here.jpg">-->
+        <form [formGroup]="authorForm" (ngSubmit)="saveauthor()" enctype="multipart/form-data">
+            <div class="formbold-input-flex">
+
+                <div>
+                    <label for="Name" class="formbold-form-label">  Name  <span *ngIf="authorForm.controls['Name'].invalid &&authorForm.controls['Name'].dirty" class="text-danger"> name is Required *</span></label>
+
+                    <input type="text" name="Name" id="Name" placeholder="Author name" class="formbold-form-input" formControlName="Name" />
+                </div>
+                <div>
+                    <label class="formbold-form-label">City <span class="text-danger" *ngIf="authorForm.controls['CityId'].invalid &&authorForm.controls['CityId'].dirty" >City Required *</span></label>
+
+                    <select class="formbold-form-input" value="" name="occupation" id="occupation" formControlName="CityId">
+                        <option value ='' > Select City</option>
+                      <option *ngFor="let city of Cities" value="{{city.id}}">{{city.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="formbold-input-flex">
+                <div>
+                    <label for="Details" class="formbold-form-label">  Details </label>
+                    <input style="width:200%" type="text" name="Details" id="Details" placeholder="Author Details" class="formbold-form-input" formControlName="Details" />
+                </div>
 
 
-    <form [formGroup]="authorForm" (ngSubmit)="saveauthor()" enctype="multipart/form-data">
+            </div>
 
-        <div class="form-group">
-            <label for="name">Name </label>
-            <input type="text" class="form-control" id="name" placeholder="Name" name="name" formControlName="Name">
-        </div>
-        <div class="form-group">
-            <label for="details"> Details</label>
-            <input type="text" class="form-control" id="details" placeholder=" Details" name="details" formControlName="Details">
-        </div>
-        <div class="form-group">
-            <label for="birthDay"> birthDay</label>
-            <input type="date" class="form-controll" id="birthDay" placeholder=" birthDay" name="birthDay" formControlName="BirthDay">
-        </div>
 
-        <select formControlName="CityId" name="CityId" id="CityId">
-        <option disabled> Select City </option>
-        <option *ngFor="let city of Cities" value="{{city.id}}">{{city.name}}</option>
-    </select>
-        <div class="form-group">
 
-            <input type="file" #photoinput class="form-controll" id="picture" (change)="onFileSelected($event)" name="picture">
 
-        </div>
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </form>
+
+            <div class="formbold-mb-3">
+                <label for="dob" class="formbold-form-label"> Author birthDay </label>
+                <input type="date" name="dob" id="dob" class="formbold-form-input" formControlName="BirthDay" />
+            </div>
+
+
+
+            <div class="formbold-form-file-flex">
+                <label for="upload" class="formbold-form-label">
+                      Upload Photo
+                  </label>
+                <input type="file" #photoinput name="upload" id="upload" class="formbold-form-file" (change)="onFileSelected($event)" />
+
+
+            </div>
+
+            <button type="submit" class="formbold-btn">Add Author</button>
+        </form>
+    </div>
 </div>

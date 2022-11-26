@@ -33,7 +33,7 @@ public authors : any ;
     this.service.getAuthors().subscribe(
       (response) => {
         this.Authors = response;
-        console.log(response);
+       
       },
       (error) => {
         console.log(error);

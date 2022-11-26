@@ -15,6 +15,9 @@ import { RegisterComponent } from './register/register.component';
 import { AddauthorComponent } from './addauthor/addauthor.component';
 import { AddbookComponent } from './addbook/addbook.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BookdetailsComponent } from './bookdetails/bookdetails.component';
+import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { AuthordetailsComponent } from './authordetails/authordetails.component';
 
 
 @NgModule({
@@ -26,7 +29,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LoginComponent,
     RegisterComponent,
     AddauthorComponent,
-    AddbookComponent
+    AddbookComponent,
+    BookdetailsComponent,
+    EditAuthorComponent,
+    AuthordetailsComponent
     
   ],
   imports: [
@@ -36,6 +42,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule
+    
   ],
   providers: [
     {

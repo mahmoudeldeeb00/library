@@ -1,0 +1,100 @@
+.container {
+    display: flex;
+}
+
+.display-body {
+    padding: 20px;
+    background-color: #ccc;
+}
+
+.header {
+    width: 34%;
+    text-align: center;
+}
+
+.display-img {
+    background-color: aquamarine;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    box-shadow: rgb(202, 93, 93) 4px 4px 34px -4px;
+    overflow: hidden;
+    text-align: center;
+    display: inline-block;
+    margin: 0px auto;
+}
+
+.display-img img {
+    width: 100%;
+}
+
+.display-body h3 {
+    font-size: 1.75rem;
+    margin: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: capitalize;
+    text-shadow: rgb(202, 93, 93) 4px 4px 4px;
+}
+
+.birth-span {
+    color: rgb(202, 93, 93);
+    font-weight: bold;
+}
+
+.details {
+    padding: 30px;
+    width: 66%;
+    text-align: center;
+}
+
+.details p {
+    text-align: center;
+    font-weight: bold;
+    text-shadow: rgb(202, 93, 93) 4px 4px 4px;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+table {
+    width: 1000px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: rgb(202, 93, 93) 4px 4px 34px -4px;
+    margin: 20px auto;
+}
+
+th,
+td {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+th {
+    text-align: left;
+}
+
+thead th {
+    background-color: #55608f;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+}
+
+tbody td {
+    position: relative;
+}
+
+tbody td:hover :before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: -1;
+}
