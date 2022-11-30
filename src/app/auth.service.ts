@@ -7,12 +7,14 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class AuthService {
+    UserRoles = this.apiService.getUserRoles();
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
   constructor(private apiService: ApiService) {
     const token = localStorage.getItem('token');
     this._isLoggedIn$.next(!!token);
+    
   }
 
    login(model:any) { 
@@ -40,6 +42,12 @@ export class AuthService {
     this._isLoggedIn$.next(false);
     localStorage.removeItem('token');
  
+  }
+  CheckUserIsAdmin() {
+    return this.apiService.getUserRoles()
+  }
+  getUserInfo(){
+    return this.apiService.GetUserInfo();
   }
 
 

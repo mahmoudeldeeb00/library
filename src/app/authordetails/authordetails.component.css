@@ -57,10 +57,10 @@
 }
 
 table {
-    width: 1000px;
+    width: 100%;
     border-collapse: collapse;
     overflow: hidden;
-    box-shadow: rgb(202, 93, 93) 4px 4px 34px -4px;
+    box-shadow: #ccc 4px 4px 34px -4px;
     margin: 20px auto;
 }
 
@@ -68,7 +68,9 @@ th,
 td {
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    color: #000;
+    font-size: large;
+    text-align: center !important;
 }
 
 th {

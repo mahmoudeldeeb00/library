@@ -12,7 +12,11 @@
                 <th scope="col">city name </th>
                 <th scope="col">Picture </th>
                 <th scope="col">-- </th>
-                <th scope="col">-- </th>
+                <ng-container *ngIf="chekIfAdmin">
+
+                    <th scope="col">-- </th>
+                    <th scope="col">-- </th>
+                </ng-container>
 
 
 
@@ -29,15 +33,24 @@
                   totalItems: count
                 };
           let i = index
-        ">
-                <th scope="row">{{ author.id }}</th>
+        " id="author-{{author.id}}">
+                <th scope="row">{{ i+1 }}</th>
                 <td>{{author.name}}</td>
                 <td>{{author.birthDay|date}}</td>
                 <td>{{author.details}}</td>
                 <td>{{author.cityName}}</td>
-                <td><img src="assets/author pictures/{{author.pictureSrc}}" width="50px"></td>
-                <td><a class="btn btn-success " [routerLink]="['/editauthor',author.id]">Edit </a></td>
+                <td>
+                    <div class="img">
+                        <img [alt]="author.name" src="assets/author pictures/{{author.pictureSrc}}">
+                    </div>
+                </td>
+
                 <td><a class="btn btn-primary " [routerLink]="['/authordetails',author.id]">Details </a></td>
+                <ng-container *ngIf="chekIfAdmin">
+
+                    <td><a class="btn btn-success " [routerLink]="['/editauthor',author.id]">Edit </a></td>
+                    <td><button class="btn btn-danger " (click)="DeleteAuthor(author.id)">Delete </button></td>
+                </ng-container>
 
 
             </tr>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { bookModel } from 'src/models/bookModel';
+import { AuthService } from '../auth.service';
 import { BookService } from '../book.service';
 
 
@@ -13,10 +14,13 @@ import { BookService } from '../book.service';
 
 export class BookdetailsComponent implements OnInit{
   
-   bookDetails:bookModel ={id:0,name:'',authorId:0,authorName:'',bookTypeName:'',pageNumbers:0,price:0,publishDate:new Date()};
+   bookDetails:bookModel ={id:0,name:'',authorId:0,authorName:'',bookTypeName:'',pageNumbers:0,price:0,publishDate:new Date(),librariesContainBook:new Array()};
   id!:number;  
-  constructor(private route :ActivatedRoute , private bookserv:BookService) {
-    
+  userId!:string;
+  constructor(private route :ActivatedRoute , private bookserv:BookService , private authserv:AuthService) {
+    this.authserv.getUserInfo().subscribe((res:any)=>{
+this.userId = res.id;
+    })
     this.route.paramMap.subscribe((res)=>{
       this.id = Number(res.get("id"));
     })
@@ -29,8 +33,14 @@ export class BookdetailsComponent implements OnInit{
   fetchBookData(){
     this.bookserv.getBookDetails(this.id).subscribe((res : bookModel)=>{
       this.bookDetails = res;
-      console.log(res)
     })
+  }
+
+  CheckBook(bookId :number , libraryId:number){
+      this.bookserv.CheckBook(this.userId,bookId,libraryId).subscribe(res=>{
+      alert(res)
+        document.getElementById("lib-"+libraryId)?.style.setProperty('background-color','#0f0');
+      })
   }
 
 }

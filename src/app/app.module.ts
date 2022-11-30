@@ -18,6 +18,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { BookdetailsComponent } from './bookdetails/bookdetails.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { AuthordetailsComponent } from './authordetails/authordetails.component';
+import { LibraryModule } from './library/library.module';
+import { EditbookComponent } from './editbook/editbook.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
+
+
 
 
 @NgModule({
@@ -32,17 +37,28 @@ import { AuthordetailsComponent } from './authordetails/authordetails.component'
     AddbookComponent,
     BookdetailsComponent,
     EditAuthorComponent,
-    AuthordetailsComponent
+    AuthordetailsComponent,
+    EditbookComponent,
+    UserprofileComponent,
+    
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
-    
+    NgxPaginationModule,
+    LibraryModule,
+
+
+
+    AppRoutingModule,
+
+
+ 
+
+
   ],
   providers: [
     {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../auth.service';
 import { BookService } from '../book.service';
 
 @Component({
@@ -14,10 +15,16 @@ export class BooksComponent implements OnInit {
   count: number = 0;
   tableSize: number = 9;
   tableSizes: any = [3, 6, 9, 12];
-
-  constructor(private service : BookService ,private title:Title) {
+  isAdmin!:boolean;
+  constructor(private service : BookService ,private title:Title , private authserv:AuthService) {
     this.title.setTitle("books")
-   }
+this.authserv.CheckUserIsAdmin().subscribe((res:string[])=>{
+  this.isAdmin = res.includes("Admin")
+
+
+}
+  )
+  }
 
   ngOnInit(): void {
     this.getBooks();
@@ -42,4 +49,19 @@ private getBooks ():void {
     this.page = 1;
     this.getBooks();
   }
+
+  RemoveBook(id:number){
+   
+     this.service.DeleteBook(id).subscribe(res=>{
+
+      var deleted = document.getElementById('book-'+id)
+      deleted?.style.setProperty("transition","all 2s  ease-in-out")
+      deleted?.style.setProperty("opacity","0")
+      setTimeout(function(){
+  deleted?.remove();
+      },2000)
+
+     })
+  }
+
 }

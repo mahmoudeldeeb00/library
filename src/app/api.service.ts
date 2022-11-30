@@ -14,13 +14,16 @@ export class ApiService {
   }
 
   register(regmodel:any){
-    console.log(regmodel)
+   
     return this.http.post('https://localhost:44316/api/Authi/register', regmodel);
 
   }
-  AddBook(bookmodel:any){
-    return this.http.post('https://localhost:44316/api/Book/Add New Book', bookmodel);
-
+  public GetUserInfo (){
+    return this.http.get("https://localhost:44316/api/Authi/getCurrentUserInfromation");
+ }
+  public getUserRoles():Observable<any>{
+    return this.http.get("https://localhost:44316/api/Authi/getCurrentUserRoles")
   }
+  
 
 }

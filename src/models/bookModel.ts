@@ -7,6 +7,6 @@ export  interface bookModel {
     bookTypeName :string,
     authorId :number,
     authorName :string,
-    
+    librariesContainBook:any[]
 
 }

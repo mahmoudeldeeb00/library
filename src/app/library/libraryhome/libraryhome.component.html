@@ -1,0 +1,33 @@
+<div class="body">
+
+    <div class="library-div" *ngFor="let lib of libraries" id="{{lib.id}}">
+        <div class="container">
+
+
+            <h2 class="lib-name">
+                {{lib.name}}
+
+            </h2>
+
+            <p style="display: inline-block; width:200px">
+                العنوان:-
+                <span> {{lib.address}}</span>
+            </p>
+            <p style="display: inline-block; width:200px">
+                المدينة:-
+                <span>  {{lib.cityName}}</span>
+            </p>
+            <div class="library-books">
+                <ul>
+                    <li *ngFor="let book of lib.books">
+
+
+                        <a [routerLink]="['/bookdetails', book.id]" class='btn btn-lib '> {{book.name|uppercase}}</a>
+
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>

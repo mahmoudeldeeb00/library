@@ -11,14 +11,22 @@ import { BookService } from '../book.service';
 export class AddbookComponent implements OnInit {
 bookForm!:FormGroup ;
 bookTypes :any ; 
+AuthorsList:any;
+librariesList:any;
+
+librariesIds = new Array();
   constructor(private formbuilder : FormBuilder,private bookservice:BookService , private route :Router) { }
 
   ngOnInit(): void {
 this.oninit()
 this.bookservice.GetBookTypes().subscribe((res:any[])=>this.bookTypes=res);
+this.bookservice.getAuthors().subscribe((res:any[])=>this.AuthorsList=res);
+this.bookservice.GetAllLibraries().subscribe((res:any[])=>this.librariesList=res);
+
   }
 
 savebook():void{
+this.bookForm.get('libraiesFoundIn')?.setValue(JSON.stringify(this.librariesIds))
 this.bookservice.AddBook(this.bookForm.value).subscribe((result)=>{
   alert(result )
     this.route.navigate(['books'])
@@ -36,8 +44,9 @@ this.bookservice.AddBook(this.bookForm.value).subscribe((result)=>{
       Price:'',
       PublishDate:'',
       PageNumbers:'',
-      BookTypeId:'',
-      AuthorId:''
+      BookTypeId:['',Validators.required],
+      AuthorId:['',Validators.required],
+      libraiesFoundIn:['']
     })
   }
 
@@ -45,7 +54,19 @@ this.bookservice.AddBook(this.bookForm.value).subscribe((result)=>{
 get name(){
   return this.bookForm.get("Name")
 }
+ AddLib(id:number){
 
+  if(!this.librariesIds.includes(id)){
+    document.getElementById("btn-"+ id)?.style.setProperty('opacity','1');
+    this.librariesIds.push(id);
+  }
+  else{
+    document.getElementById("btn-"+ id)?.style.setProperty('opacity','.2');
+    this.librariesIds.splice(this.librariesIds.indexOf(id));
+  }
+
+
+ }
 
 
 

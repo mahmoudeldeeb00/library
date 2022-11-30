@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -12,11 +12,11 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = 'library';
   showHeadAndFooter: boolean = false;
-  currentuser! :any ; 
-  userName!:string;
-
+  //currentuser! :any ; 
+  userName:string ="User";
+ 
   isAuthenticated : boolean = !!localStorage.getItem('token');
-constructor(public authiservice : AuthService,public http: HttpClient,private router:Router){
+constructor(public authiservice : AuthService,private router:Router){
   router.events.forEach((event) => {
     if (event instanceof NavigationStart) {
       if (event['url'] == '/login' || event['url'] =='/register') {
@@ -27,24 +27,18 @@ constructor(public authiservice : AuthService,public http: HttpClient,private ro
     }
   
   });
- 
- this.GetUserInfo()
+ if(!!localStorage.getItem('token')){
+  this.GetUserInfo()
+ }
 }
 public GetUserInfo (){
-   this.http.get("https://localhost:44316/api/Authi/getCurrentUserInfromation").subscribe((res:any)=>{
- this.currentuser = res;
-
- this.userName = this.currentuser.userName
-   })
+   this.authiservice.getUserInfo().subscribe((res:any)=>{
+    //this.currentuser = res;
+    this.userName = res.userName
+})
+   
 }
 
-public connectServer() {
-  this.http.get('url')
-    .subscribe(
-      data => console.log(data),
-      err => console.log(err)
-    );
-}
 public logOut(){
     this.authiservice.logout();
     this.router.navigate(['']).then(()=>{
@@ -52,4 +46,6 @@ public logOut(){
     });
    
   }
+
+
 }

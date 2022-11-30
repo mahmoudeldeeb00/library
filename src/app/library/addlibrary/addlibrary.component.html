@@ -1,0 +1,37 @@
+<div class="formbold-main-wrapper">
+    <!-- Author: FormBold Team -->
+    <!-- Learn More: https://formbold.com -->
+    <div class="formbold-form-wrapper">
+        <!-- <img src="your-image-here.jpg">-->
+        <form [formGroup]="libraryForm" (ngSubmit)="AddLibrary()">
+            <div class="formbold-input-flex">
+                <div>
+                    <label for="name" class="formbold-form-label">  Name </label>
+                    <input type="text" name="name" id="name" placeholder="library  name" formControlName="name" class="formbold-form-input" />
+                </div>
+
+                <div>
+                    <label for="address" class="formbold-form-label"> address </label>
+                    <input type="text" name="address" id="address" placeholder="address" class="formbold-form-input" formControlName="address" />
+                </div>
+            </div>
+
+            <div class="formbold-input-flex">
+
+
+                <div>
+                    <label class="formbold-form-label">city</label>
+
+                    <select class="formbold-form-input" value='' name="cityId" id="cityId" formControlName="cityId">
+                        <option value="">Select City </option>
+                      <option *ngFor="let city of cityList" value="{{city.id}}">{{city.name}}</option>
+            
+              </select>
+                </div>
+            </div>
+
+
+            <button [class.dontsubmit]="libraryForm.invalid || !libraryForm.dirty" type="submit" class="formbold-btn">add </button>
+        </form>
+    </div>
+</div>

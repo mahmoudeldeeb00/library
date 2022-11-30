@@ -1,40 +1,80 @@
-<div class="container">
+<!-- <div class="container">
 
-    <form [formGroup]="bookForm" (ngSubmit)="savebook()">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">name</label>
-            <input type="text" formControlName="Name" class="form-control" id="name" aria-describedby="emailHelp">
-            <span class="text-danger" *ngIf="name?.invalid && name?.touched">name is invalid</span>
-        </div>
+  
 
-        <div class="mb-3">
-            <label for="price" class="form-label">price</label>
-            <input type="number" formControlName="Price" class="form-control" id="price">
-        </div>
-
-        <div class="mb-3 form-check">
-            <label class="form-label" for="PublishDate">publish Date</label>
-            <input formControlName="PublishDate" type="date" class="form-control" id="publishDate">
-        </div>
-        <div class="mb-3">
-            <label for="PageNumbers" class="form-label">pageNumbers</label>
-            <input type="number" formControlName="PageNumbers" class="form-control" id="pageNumbers">
-        </div>
-
+        
+        
 
         <div class="mb-3">
             <label for="authorId" class="form-label">authorId </label>
             <input type="number" formControlName="AuthorId" class="form-control" id="authorId">
         </div>
-        <div class="mb-3">
-
-            <select id="bookTypeId" formControlName="BookTypeId">
-                <option disabled selected> Select Book Type</option>
-                <option *ngFor="let type of bookTypes " value="{{type.id}}"> {{type.name}}</option>
-
-            </select>
-        </div>
+       
         <button [disabled]="bookForm.invalid" type="submit" class="btn btn-primary">Save</button>
     </form>
-</div>
+</div> -->
 <!-- //////////////////////////////////// -->
+<div class="formbold-main-wrapper">
+    <!-- Author: FormBold Team -->
+    <!-- Learn More: https://formbold.com -->
+    <div class="formbold-form-wrapper">
+        <!-- <img src="your-image-here.jpg">-->
+        <form [formGroup]="bookForm" (ngSubmit)="savebook()">
+            <div class="formbold-input-flex">
+                <div>
+                    <span class="text-danger" *ngIf="name?.invalid && name?.touched">name is invalid</span>
+                    <label for="Name" class="formbold-form-label">  Name  </label>
+                    <input type="text" name="Name" id="Name" placeholder="book name" class="formbold-form-input" formControlName="Name" />
+                </div>
+
+                <div>
+                    <label for="Price" class="formbold-form-label"> Price </label>
+                    <input type="number" name="Price" id="Price" placeholder="Price" class="formbold-form-input" formControlName="Price" />
+                </div>
+            </div>
+
+            <div class="formbold-input-flex">
+                <div>
+                    <label for="PageNumbers" class="formbold-form-label"> PageNumbers </label>
+                    <input type="number" name="PageNumbers" id="PageNumbers" placeholder="PageNumbers" formControlName="PageNumbers" class="formbold-form-input" />
+                </div>
+
+                <div>
+                    <label class="formbold-form-label">Book Type</label>
+
+                    <select class="formbold-form-input" value='' name="BookTypeId" formControlName="BookTypeId" id="BookTypeId">
+                        <option disabled selected value=""> Select Book Type</option>
+                        <option *ngFor="let type of bookTypes " value="{{type.id}}"> {{type.name}}</option>
+             
+              </select>
+                </div>
+            </div>
+
+            <div class="formbold-input-flex">
+
+
+                <div>
+                    <label class="formbold-form-label">Author</label>
+
+                    <select class="formbold-form-input" value="" name="AuthorId" formControlName="AuthorId" id="AuthorId">
+                        <option disabled value=""> Select Author <span class="text-danger" *ngIf="bookForm.controls['AuthorId'].invalid &&bookForm.controls['AuthorId'].dirty" >City Required *</span> </option>
+                        <option *ngFor="let type of AuthorsList" value="{{type.id}}"> {{type.name}}</option>
+             
+              </select>
+                </div>
+            </div>
+            <div class="formbold-mb-3">
+                <label for="PublishDate" class="formbold-form-label"> Publish Date </label>
+                <input type="date" name="PublishDate" id="PublishDate" class="formbold-form-input" formControlName="PublishDate" />
+            </div>
+            <div class="formbold-mb-3">
+                <span type="btn" id="btn-{{lib.id}}" class=" btn btn-primary lib-btn" *ngFor="let lib of librariesList" (click)="AddLib(lib.id)"> {{lib.name}}</span>
+            </div>
+
+
+
+
+            <button [class.dontsubmit]="bookForm.invalid || !bookForm.dirty" type="submit" class="formbold-btn">Add Book</button>
+        </form>
+    </div>
+</div>

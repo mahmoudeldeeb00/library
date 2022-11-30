@@ -50,7 +50,7 @@
 
             </div>
 
-            <button type="submit" class="formbold-btn">Add Author</button>
+            <button [class.dontsubmit]="authorForm.invalid || !authorForm.dirty" type="submit" class="formbold-btn">Add Author</button>
         </form>
     </div>
 </div>

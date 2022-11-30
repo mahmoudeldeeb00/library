@@ -1,4 +1,6 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 import { BookService } from '../book.service';
 
 @Component({
@@ -7,36 +9,30 @@ import { BookService } from '../book.service';
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent implements OnInit {
-
+ chekIfAdmin:boolean =false;
   Authors: any;
   page: number = 1;
   count: number = 0;
   tableSize: number = 7;
-  tableSizes: any = [3, 6, 9, 12];
-  
- 
   ///////////////////
-  constructor(private service :BookService ) { }
+  constructor(private service :BookService ,private aserv: AuthService) {
+    
+     this.aserv.CheckUserIsAdmin().subscribe(res=>{
+      this.chekIfAdmin = res.includes("Admin")
+     })
+    
+   }
 public authors : any ; 
   ngOnInit(): void {
-   // this.getAuthors();
     this.fetchAuthors();
   }
-  // private getAuthors():void{
-  //     this.service.getAuthors().subscribe(result => {
-  //     this.authors = result;
-     
-  //     });
-  // }
   
+ 
+ 
   fetchAuthors(): void {
     this.service.getAuthors().subscribe(
       (response) => {
-        this.Authors = response;
-       
-      },
-      (error) => {
-        console.log(error);
+        this.Authors = response;   
       }
     );
   }
@@ -44,10 +40,19 @@ public authors : any ;
     this.page = event;
     this.fetchAuthors();
   }
-  onTableSizeChange(event: any): void {
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.fetchAuthors();
-  }
+ 
+
+DeleteAuthor(id:number){
+//server side
+this.service.DeleteAuthor(id).subscribe();
+//dom side 
+  const deletedrow = document.getElementById('author-'+ id); 
+  deletedrow?.style.setProperty('opacity','0')
+  setTimeout(function(){
+    deletedrow?.remove()
+  },1000) 
+
+}
+
 
 }

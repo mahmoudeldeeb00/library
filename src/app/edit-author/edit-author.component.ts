@@ -30,7 +30,6 @@ export class EditAuthorComponent implements OnInit {
 
   intiateValues(){
 this.service.getAuthorDetails(this.authorId).subscribe((res)=>{
-  console.log(res)
   res.birthDay = new Date(res.birthDay).toISOString().slice(0,10); 
     this.authorForm.patchValue(res)
     console.log(this.authorForm.value)

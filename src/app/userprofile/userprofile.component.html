@@ -1,0 +1,23 @@
+<p>userprofile works!</p>
+<h1>
+    {{userId}} <br> <br>
+
+
+</h1>
+
+
+<button class="btn btn-primary" (click)="GetCheckedBooks()"> my Checked Books</button>
+
+
+<div style="background-color:#ccc ; opacity: 0;height:0px;overflow: hidden;transition: all  2s ease-in-out;" class="checked books" id='booksdiv'>
+    <ul style="list-style-type: none;">
+        <li *ngFor="let check of bookschecked" id="check-{{check.id}}" style="padding:5px ">
+            <a style="margin:10px" class="btn btn-primary" [routerLink]="['/bookdetails',check.bookId]"> {{check.bookName}} </a>
+            <a style="margin:10px" class="btn btn-primary"> {{check.libraryName}} </a>
+            <a style="margin:10px" class="btn btn-danger" (click)="DeleteCheck(check.id)"> Delete </a>
+        </li>
+    </ul>
+</div>
+
+
+after div

@@ -1,0 +1,44 @@
+.body {
+    background-color: #ccc;
+    padding: 15px;
+}
+
+.library-div {
+    border: 1px solid rgb(209, 132, 132);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5[x];
+}
+
+.lib-name {
+    text-shadow: rgb(156, 74, 74) 4px 4px 4px;
+    margin-bottom: 50px;
+}
+
+ul li {
+    display: inline;
+}
+
+.btn-lib {
+    background-color: rgb(187, 103, 103);
+    margin: 10px;
+    padding: 5px 10px;
+    width: 250px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-lib:hover {
+    box-shadow: rgb(126, 75, 75) 4px 4px 10px -4px;
+}
+
+p {
+    margin-left: 239px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+p span {
+    text-shadow: rgb(156, 74, 74) 2px 2px 2px;
+}

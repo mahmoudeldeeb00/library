@@ -58,4 +58,17 @@
             </h2>
         </div>
     </div>
+    <div class="display">
+        <span class="display-span"> 
+         Libraries that have it 
+          </span>
+        <div class="display-data">
+            <ul style="list-style-type:none">
+                <li class="lib-li" style="display:inline-block" *ngFor="let lib of bookDetails.librariesContainBook" id="lib-{{lib.id}}">
+                    <a style='padding:7px ;margin:10px' class="btn btn-primary ">{{lib.name}}</a>
+                    <span (click)="CheckBook(bookDetails.id, lib.id)">Check</span>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

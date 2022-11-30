@@ -12,9 +12,7 @@
                 <th scope="col">publish date</th>
                 <th scope="col"> book type </th>
                 <th scope="col">author </th>
-                <th scope="col">
-                    --
-                </th>
+
             </tr>
         </thead>
         <tbody>
@@ -22,7 +20,9 @@
             itemsPerPage: tableSize,
             currentPage: page,
             totalItems: count
-        }">
+        }
+        
+        " id="book-{{item.id}}">
 
                 <th scope="row">{{item.id}}</th>
                 <td>{{item.name}} </td>
@@ -31,6 +31,13 @@
                 <td>{{item.bookTypeName}} </td>
                 <td>{{item.authorName}}</td>
                 <td><a class="btn btn-primary" [routerLink]="['/bookdetails',item.id]">View details</a></td>
+                <ng-container *ngIf="isAdmin">
+
+                    <td><a class="btn btn-success" [routerLink]="['/editbook',item.id]"> Edit</a></td>
+                    <td><a (click)="RemoveBook(item.id)" class="btn btn-danger"> Delete</a></td>
+                </ng-container>
+
+
             </tr>
 
         </tbody>
