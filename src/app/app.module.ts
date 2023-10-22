@@ -21,6 +21,9 @@ import { AuthordetailsComponent } from './authordetails/authordetails.component'
 import { LibraryModule } from './library/library.module';
 import { EditbookComponent } from './editbook/editbook.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { SharedModule } from 'src/shared/shared.module';
+
 
 
 
@@ -39,7 +42,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     EditAuthorComponent,
     AuthordetailsComponent,
     EditbookComponent,
-    UserprofileComponent,
+    UserprofileComponent
     
     
   ],
@@ -50,15 +53,11 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     LibraryModule,
-
-
-
     AppRoutingModule,
-
-
+    MdbModalModule,
+    SharedModule
  
-
-
+ 
   ],
   providers: [
     {
@@ -70,4 +69,10 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  /**
+   *
+   */
+  
+}

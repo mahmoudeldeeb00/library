@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { BookService } from '../book.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-author',
@@ -10,7 +11,9 @@ import { BookService } from '../book.service';
 })
 export class AuthorComponent implements OnInit {
  chekIfAdmin:boolean =false;
-  Authors: any;
+ authorsisxts =false ;
+  Authors :any ; 
+  Aauthors = new BehaviorSubject<any>({});
   page: number = 1;
   count: number = 0;
   tableSize: number = 7;
@@ -20,11 +23,11 @@ export class AuthorComponent implements OnInit {
      this.aserv.CheckUserIsAdmin().subscribe(res=>{
       this.chekIfAdmin = res.includes("Admin")
      })
+     this.fetchAuthors();
+     
     
    }
-public authors : any ; 
   ngOnInit(): void {
-    this.fetchAuthors();
   }
   
  
@@ -32,7 +35,11 @@ public authors : any ;
   fetchAuthors(): void {
     this.service.getAuthors().subscribe(
       (response) => {
+     
         this.Authors = response;   
+        if(response.count >0)
+          this.authorsisxts= true;
+        console.log(response)
       }
     );
   }

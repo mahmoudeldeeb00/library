@@ -1,64 +1,72 @@
-<div class="container">
-    <h1 class="display-3">
-        Author Page
-    </h1>
-    <table class="table">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">name</th>
-                <th scope="col">birth day </th>
-                <th scope="col">details</th>
-                <th scope="col">city name </th>
-                <th scope="col">Picture </th>
-                <th scope="col">-- </th>
-                <ng-container *ngIf="chekIfAdmin">
-
+<!-- <div *ngIf="authorsisxts ;then data else nodata"> Ignored </div> -->
+<!-- <ng-template #data> -->
+    <div class="container">
+        <h1 class="display-3">
+            Author Page
+        </h1>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">name</th>
+                    <th scope="col">birth day </th>
+                    <th scope="col">details</th>
+                    <th scope="col">city name </th>
+                    <th scope="col">Picture </th>
                     <th scope="col">-- </th>
-                    <th scope="col">-- </th>
-                </ng-container>
-
-
-
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr *ngFor="
-          let author of Authors
-            | paginate
-              : {
-                  itemsPerPage: tableSize,
-                  currentPage: page,
-                  totalItems: count
-                };
-          let i = index
-        " id="author-{{author.id}}">
-                <th scope="row">{{ i+1 }}</th>
-                <td>{{author.name}}</td>
-                <td>{{author.birthDay|date}}</td>
-                <td>{{author.details}}</td>
-                <td>{{author.cityName}}</td>
-                <td>
-                    <div class="img">
-                        <img [alt]="author.name" src="assets/author pictures/{{author.pictureSrc}}">
-                    </div>
-                </td>
-
-                <td><a class="btn btn-primary " [routerLink]="['/authordetails',author.id]">Details </a></td>
-                <ng-container *ngIf="chekIfAdmin">
-
-                    <td><a class="btn btn-success " [routerLink]="['/editauthor',author.id]">Edit </a></td>
-                    <td><button class="btn btn-danger " (click)="DeleteAuthor(author.id)">Delete </button></td>
-                </ng-container>
-
-
-            </tr>
-        </tbody>
-
-    </table>
-    <div class="d-flex justify-content-center">
-        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
-        </pagination-controls>
+                    <ng-container *ngIf="chekIfAdmin">
+    
+                        <th scope="col">-- </th>
+                        <th scope="col">-- </th>
+                    </ng-container>
+    
+    
+    
+                </tr>
+            </thead>
+            <tbody>
+    
+                <tr *ngFor="
+              let author of Authors
+                | paginate
+                  : {
+                      itemsPerPage: tableSize,
+                      currentPage: page,
+                      totalItems: count
+                    };
+              let i = index
+            " id="author-{{author.id}}">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{author.name}}</td>
+                    <td>{{author.birthDay|date}}</td>
+                    <td>{{author.details}}</td>
+                    <td>{{author.cityName}}</td>
+                    <td>
+                        <div class="img">
+                            <img [alt]="author.name" src="assets/author pictures/{{author.pictureSrc}}">
+                        </div>
+                    </td>
+    
+                    <td><a class="btn btn-primary " [routerLink]="['/authordetails',author.id]">Details </a></td>
+                    <ng-container *ngIf="chekIfAdmin">
+    
+                        <td><a class="btn btn-success " [routerLink]="['/editauthor',author.id]">Edit </a></td>
+                        <td><button class="btn btn-danger " (click)="DeleteAuthor(author.id)">Delete </button></td>
+                    </ng-container>
+    
+    
+                </tr>
+            </tbody>
+    
+        </table>
+        <div class="d-flex justify-content-center">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+            </pagination-controls>
+        </div>
     </div>
-</div>
+<!-- </ng-template> -->
+<ng-template #nodata>
+    <h2 class="text-center p-4" > No Authors Found Yet !</h2>
+</ng-template>
+
+

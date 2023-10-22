@@ -1,0 +1,27 @@
+nav {
+    padding: 10px;
+    text-align: center;
+    background-color: ccc;
+}
+
+nav {
+    position: relative;
+}
+
+nav a {
+    margin: 5px;
+}
+
+.usernamespan {
+    color: darkcyan;
+    position: absolute;
+    right: 30px;
+}
+
+span.logout {
+    color: #000;
+}
+
+span.logout:hover {
+    cursor: pointer;
+}
